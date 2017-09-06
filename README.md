@@ -2,25 +2,25 @@
 
 This package contains the pretrained ResNet101 <del>model</del> and evaluation script for the method proposed in the following papers:
 
-Deep Image Retrieval: Learning global representations for image search. A. Gordo, J. Almazan, J. Revaud, and D. Larlus. In ECCV, 2016
-End-to-end Learning of Deep Visual Representations for Image Retrieval. A. Gordo, J. Almazan, J. Revaud, and D. Larlus. CoRR abs/1610.07940, 2016
+* *Deep Image Retrieval: Learning global representations for image search.* A. Gordo, J. Almazan, J. Revaud, and D. Larlus. In ECCV, 2016
+* *End-to-end Learning of Deep Visual Representations for Image Retrieval.* A. Gordo, J. Almazan, J. Revaud, and D. Larlus. CoRR abs/1610.07940, 2016
 
-## Dependencies
+### Dependencies:
  - Caffe
  - Region of Interest pooling layer (ROIPooling). This is the same layer used by fast RCNN and faster RCNN. A C++ implementation can be found in https://github.com/BVLC/caffe/pull/4163
  - L2-normalization layer (Normalize). Implemented in C++ in https://github.com/happynear/caffe-windows. As an alternative, we provide a python implementation of this layer that produces the same results, but is less efficient and does not implement backpropagation.
 
 
-## Datasets
+### Datasets
 The evaluation script is prepared to work on the Oxford 5k and Paris 6k datasets. To set up the datasets:
 
-```
+```sh
 mkdir datasets
 cd datasets
 ```
 
-Evaluation script:
-```
+**Evaluation script:**
+```sh
 mkdir evaluation
 cd evaluation
 wget http://www.robots.ox.ac.uk/~vgg/data/oxbuildings/compute_ap.cpp
@@ -29,8 +29,8 @@ g++ -o compute_ap compute_ap.cpp
 cd ..
 ```
 
-Oxford:
-```
+**Oxford:**
+```sh
 mkdir -p Oxford
 cd Oxford
 mkdir jpg lab
@@ -41,8 +41,8 @@ tar -xzf gt_files_170407.tgz -C lab
 cd ..
 ```
 
-Paris:
-```
+**Paris**
+```sh
 mkdir -p Paris
 cd Paris
 mkdir jpg lab tmp
@@ -59,9 +59,9 @@ cd ..
 cd ..
 ```
 
-## Usage
+### Usage
 ```
-(0)[9336]$ python test.py
+$ python test.py
 
 usage: test.py [-h] --gpu GPU --S S --L L --proto PROTO --weights WEIGHTS
                --dataset DATASET --dataset_name DATASET_NAME --eval_binary
@@ -83,9 +83,10 @@ TEMP_DIR: a temporary directory to store features and scores
 
 Note that this model does not implement the region proposal network.
 
-## Examples
+### Examples
 Adjust paths as necessary:
-* Rigid grid, no multiresolution, no query expansion or database side feature augmentation:
+<ul>
+Rigid grid, no multiresolution, no query expansion or database side feature augmentation:
 
 ```
 python test.py --gpu 0 --S 800 --L 2 --proto deploy_resnet101_normpython.prototxt --weights model.caffemodel --dataset datasets/Oxford --eval_binary datasets/evaluation/compute_ap --temp_dir tmp --dataset_name Oxford
@@ -113,6 +114,7 @@ Expected accuracy: `94.68`
 `python test.py --gpu 0 --S 800 --L 2 --proto deploy_resnet101_normpython.prototxt --weights model.caffemodel --dataset datasets/Paris --eval_binary datasets/evaluation/compute_ap --temp_dir tmp --dataset_name Paris –multires --aqe 1 --dbe 20`
 Expected accuracy: `96.58`
 
+### Citation
 
 If you use this model please cite:
 
