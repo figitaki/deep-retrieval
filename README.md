@@ -59,7 +59,7 @@ cd ..
 cd ..
 ```
 
-### Usage
+## Usage
 ```
 $ python test.py
 
@@ -83,40 +83,46 @@ TEMP_DIR: a temporary directory to store features and scores
 
 Note that this model does not implement the region proposal network.
 
-### Examples
+## Examples
 Adjust paths as necessary:
-<ul>
-Rigid grid, no multiresolution, no query expansion or database side feature augmentation:
 
-```
+**Rigid grid, no multiresolution, no query expansion or database side feature augmentation:**
+
+```sh
 python test.py --gpu 0 --S 800 --L 2 --proto deploy_resnet101_normpython.prototxt --weights model.caffemodel --dataset datasets/Oxford --eval_binary datasets/evaluation/compute_ap --temp_dir tmp --dataset_name Oxford
 ```
 Expected accuracy: `84.09`
 
-```
+```sh
 python test.py --gpu 0 --S 800 --L 2 --proto deploy_resnet101_normpython.prototxt --weights model.caffemodel --dataset datasets/Paris --eval_binary datasets/evaluation/compute_ap --temp_dir tmp --dataset_name Paris
 ```
 Expected accuracy: `93.57`
 
-* Rigid grid, multiresolution, no query expansion or database side feature augmentation:
-`python test.py --gpu 0 --S 800 --L 2 --proto deploy_resnet101_normpython.prototxt --weights model.caffemodel --dataset datasets/Oxford --eval_binary datasets/evaluation/compute_ap --temp_dir tmp --dataset_name Oxford --multires`
+**Rigid grid, multiresolution, no query expansion or database side feature augmentation:**
+```sh
+python test.py --gpu 0 --S 800 --L 2 --proto deploy_resnet101_normpython.prototxt --weights model.caffemodel --dataset datasets/Oxford --eval_binary datasets/evaluation/compute_ap --temp_dir tmp --dataset_name Oxford --multires
+```
 Expected accuracy: `86.07`
 
-`python test.py --gpu 0 --S 800 --L 2 --proto deploy_resnet101_normpython.prototxt --weights model.caffemodel --dataset datasets/Paris --eval_binary datasets/evaluation/compute_ap --temp_dir tmp --dataset_name Paris --multires`
+```sh
+python test.py --gpu 0 --S 800 --L 2 --proto deploy_resnet101_normpython.prototxt --weights model.caffemodel --dataset datasets/Paris --eval_binary datasets/evaluation/compute_ap --temp_dir tmp --dataset_name Paris --multires
+```
 Expected accuracy: `94.53`
 
-* Rigid grid, multiresolution, query expansion (k=1) and database side feature augmentation (k=20):
-```
+**Rigid grid, multiresolution, query expansion (k=1) and database side feature augmentation (k=20):**
+```sh
 python test.py --gpu 0 --S 800 --L 2 --proto deploy_resnet101_normpython.prototxt --weights model.caffemodel --dataset datasets/Oxford --eval_binary datasets/evaluation/compute_ap --temp_dir tmp --dataset_name Oxford –multires --aqe 1 --dbe 20
 ```
 Expected accuracy: `94.68`
 
-`python test.py --gpu 0 --S 800 --L 2 --proto deploy_resnet101_normpython.prototxt --weights model.caffemodel --dataset datasets/Paris --eval_binary datasets/evaluation/compute_ap --temp_dir tmp --dataset_name Paris –multires --aqe 1 --dbe 20`
+```sh
+python test.py --gpu 0 --S 800 --L 2 --proto deploy_resnet101_normpython.prototxt --weights model.caffemodel --dataset datasets/Paris --eval_binary datasets/evaluation/compute_ap --temp_dir tmp --dataset_name Paris –multires --aqe 1 --dbe 20
+```
 Expected accuracy: `96.58`
 
 ### Citation
 
-If you use this model please cite:
+If you use these models in your research, please cite:
 
 ```
 @inproceedings{Gordo2016a,
@@ -133,4 +139,4 @@ If you use this model please cite:
 }
 ```
 
-Please see LICENSE.txt for the license information.
+Please see `LICENSE.txt` for the license information.
